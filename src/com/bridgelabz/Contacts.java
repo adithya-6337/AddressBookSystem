@@ -11,7 +11,6 @@ public class Contacts {
     private String email;
 
     public String getFirstName() {
-        System.out.println();
         return firstName;
     }
 
@@ -74,6 +73,7 @@ public class Contacts {
     public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
     public String toString() {
         return "Contacts{" +
                 "firstName='" + firstName + '\'' +
