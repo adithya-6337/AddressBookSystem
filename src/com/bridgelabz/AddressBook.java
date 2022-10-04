@@ -53,6 +53,15 @@ public class AddressBook {
             System.out.println("person not found");
         }
     }
+        void deleteContact(){
+            System.out.println("Enter first name of person to delete");
+            String firstName = scan.next();
+            if (firstName.equals(contact.getFirstName())) {
+                contact = null;
+            }else {
+                System.out.println("no contacts found :( ");
+            }
+    }
 
     Contacts display() {
         return contact;
