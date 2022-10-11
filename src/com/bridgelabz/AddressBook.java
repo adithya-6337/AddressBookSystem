@@ -1,70 +1,35 @@
 package com.bridgelabz;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddressBook {
-    ArrayList<Contacts> contactList = new ArrayList<>();
-    Contacts contact = new Contacts();
-    Scanner scan = new Scanner(System.in);
-
-    void addContact() {
-        System.out.println("Enter firstName :");
-        contact.setFirstName(scan.next());
-        System.out.println("Enter lastName :");
-        contact.setLastName(scan.next());
-        System.out.println("Enter address :");
-        contact.setAddress(scan.next());
-        System.out.println("Enter city :");
-        contact.setCity(scan.next());
-        System.out.println("Enter state:");
-        contact.setState(scan.next());
-        System.out.println("Enter email :");
-        contact.setEmail(scan.next());
-        System.out.println("Enter zip :");
-        contact.setZip(scan.nextInt());
-        System.out.println("Enter phoneNumber :");
-        contact.setPhoneNumber(scan.nextLong());
-        contactList.add(contact);
+    Map<String, Contact> contactMap = new HashMap<>();
+    ArrayList<Contact> contacts = new ArrayList<Contact>();
+    public void addContact() {
+        // Scanner scanner = new Scanner(System.in);
+        Contact contact = new Contact();
+        contact.askDetailsToUser();
+        contacts.add(contact);
     }
-
-    void editContact() {
-        System.out.println("Enter first name of person to edit");
-        String firstName = scan.next();
-        if (firstName.equals(contact.getFirstName())) {
-            System.out.println("Enter the details of person");
-            System.out.println("Enter first name");
-            contact.setFirstName(scan.next());
-
-            System.out.println("Enter lastName");
-            contact.setLastName(scan.next());
-
-            System.out.println("Enter city");
-            contact.setCity(scan.next());
-
-            System.out.println("Enter state");
-            contact.setState(scan.next());
-
-            System.out.println("Enter email");
-            contact.setEmail(scan.next());
-
-            System.out.println("Enter zip");
-            contact.setZip(scan.nextInt());
-
-            System.out.println("Enter phoneNumber");
-            contact.setPhoneNumber(scan.nextLong());
-        } else {
-            System.out.println("person not found");
+    public void print() {
+        for (Contact contact : contacts) {
+            contact.viewData();
         }
     }
-
-    void deleteContact() {
-        System.out.println("Enter the first name person to delete ");
-        String firstName = scan.next();
-
-        if (firstName.equals(contact.getFirstName())) {
-            contact = null;
-        } else {
-            System.out.println("no contact found");
+    public void editContact(String contactName) {
+        for (Contact contact : contacts) {
+            if (contact.firstName.equals(contactName)) {
+                contact.viewData();
+                contact.askDetailsToUser();
+            }
+        }
+    }
+    public void deleteContact(String name) {
+        for (Contact contact : contacts) {
+            if (contact.firstName.equals(name)) {
+                contacts.remove(contact);
+            }
         }
     }
 }
